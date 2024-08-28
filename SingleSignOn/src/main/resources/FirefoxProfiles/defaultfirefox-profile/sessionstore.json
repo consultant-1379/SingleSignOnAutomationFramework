@@ -1,0 +1,98 @@
+{
+    "windows":
+            [
+                {"tabs":
+                            [
+                                {"entries":
+                                            [
+                                                {
+                                                    "url": "about:newtab",
+                                                    "title": "New Tab",
+                                                    "ID": 10,
+                                                    "docshellID": 15,
+                                                    "owner_b64": "SmIS26zLEdO3ZQBgsLbOywAAAAAAAAAAwAAAAAAAAEY=",
+                                                    "docIdentifier": 10,
+                                                    "scroll": "0,0"
+                                                }
+                                            ],
+                                    "index": 1,
+                                    "hidden": false,
+                                    "attributes": {}
+                                }
+                            ],
+                    "selected": 1,
+                    "_closedTabs":
+                            [
+                                {"state":
+                                            {
+                                                "entries":
+                                                        [
+                                                            {
+                                                                "url": "http://www.mozilla.org/en-US/firefox/19.0.2/whatsnew/?oldversion=17.0.1",
+                                                                "title": "Welcome to Firefox",
+                                                                "ID": 1,
+                                                                "docshellID": 5,
+                                                                "docIdentifier": 1
+                                                            },
+                                                            {
+                                                                "url": "http://www.rte.ie/",
+                                                                "title": "RTÉ Ireland's National Television and Radio Broadcaster",
+                                                                "ID": 2,
+                                                                "docshellID": 5,
+                                                                "docIdentifier": 2,
+                                                                "scroll": "0,0"
+                                                            }
+                                                        ],
+                                                "index": 2,
+                                                "hidden": false,
+                                                "attributes":
+                                                        {
+                                                            "image": "http://www.rte.ie/favicon.ico"
+                                                        }
+                                            },
+                                    "title": "RTÉ Ireland's National Television and Radio Broadcaster",
+                                    "image": "http://www.rte.ie/favicon.ico",
+                                    "pos": 0
+                                },
+                                {"state":
+                                            {"entries":
+                                                        [
+                                                            {
+                                                                "url": "about:home",
+                                                                "title": "Mozilla Firefox Start Page",
+                                                                "ID": 0,
+                                                                "docshellID": 6,
+                                                                "docIdentifier": 0,
+                                                                "scroll": "0,0"
+                                                            }
+                                                        ],
+                                                "index": 1,
+                                                "hidden": false,
+                                                "attributes": {
+                                                    "image": "chrome://branding/content/icon16.png"
+                                                }
+                                            },
+                                    "title": "Mozilla Firefox Start Page",
+                                    "image": "chrome://branding/content/icon16.png",
+                                    "pos": 1
+                                }
+                            ],
+                    "width": 1275,
+                    "height": 900,
+                    "screenX": 4,
+                    "screenY": 4,
+                    "sizemode": "normal",
+                    "title": "New Tab",
+                    "_shouldRestore": true
+                }
+            ],
+    "selectedWindow": 0,
+    "_closedWindows": [],
+    "session": {
+        "state": "stopped",
+        "lastUpdate": 1363866837637,
+        "startTime": 1363866779284,
+        "recentCrashes": 0
+    },
+    "scratchpads": []
+}

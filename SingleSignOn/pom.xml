@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- Each team will need to update the following section to reflect the
+	correct parent for their test cases -->
+	<parent>
+		<groupId>com.ericsson</groupId>
+		<artifactId>master</artifactId>
+		<version>3.0</version>
+	</parent>
+
+	<!-- Each team will need to update the following section with the correct
+	information -->
+	<groupId>com.ericsson.nms.sso</groupId>
+	<artifactId>tor</artifactId>
+	<name>SSO Acceptance Tests</name>
+	<version>1.0.2-SNAPSHOT</version>
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<target.java.version>1.7</target.java.version>
+		<!-- -->
+		<taf_version>2.0.3</taf_version>
+		<taf_sdk>all</taf_sdk>
+		<!-- -->
+		<!-- -->
+	</properties>
+
+	<!-- Workaround for CIP-3782 -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>xml-apis</groupId>
+				<artifactId>xml-apis</artifactId>
+				<version>1.4.01</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.ericsson.cifwk</groupId>
+			<artifactId>tor-taf-sdk</artifactId>
+			<version>${taf_version}</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>2.35.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.sikuli</groupId>
+			<artifactId>sikuli-api</artifactId>
+			<version>1.0.2</version>
+			<!--<scope>system</scope>-->
+			<!--<systemPath>${basedir}/src/main/resources/lib/sikuli-api-1.0.2-standalone.jar</systemPath>-->
+		</dependency>
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.6.3</version>
+		</dependency>
+	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>test</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>taf:copy-dependencies</id>
+								<phase>generate-test-resources</phase>
+								<goals>
+									<goal>copy-dependencies</goal>
+								</goals>
+								<configuration>
+									<includeScope>runtime</includeScope>
+									<copyPom>false</copyPom>
+									<includeGroupIds>com.ericsson.cifwk</includeGroupIds>
+									<outputDirectory>${project.build.directory}/lib</outputDirectory>
+									<overWriteReleases>false</overWriteReleases>
+									<overWriteSnapshots>true</overWriteSnapshots>
+									<overWriteIfNewer>true</overWriteIfNewer>
+									<stripClassifier>true</stripClassifier>
+									<stripVersion>true</stripVersion>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>test</phase>
+								<goals>
+									<goal>java</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<mainClass>com.ericsson.cifwk.taf.Taf</mainClass>
+							<classpathScope>test</classpathScope>
+							<commandlineArgs>-dir ${project.build.outputDirectory}/suites</commandlineArgs>
+							<systemProperties>
+								<systemProperty>
+									<key>projectName</key>
+									<value>${project.name}</value>
+								</systemProperty>
+								<systemProperty>
+									<key>fetchLogs</key>
+									<value>true</value>
+								</systemProperty>
+								<systemProperty>
+									<key>name</key>
+									<value>TAFTEST</value>
+								</systemProperty>
+								<systemProperty>
+									<key>logdir</key>
+									<value>${project.build.directory}/Jcat_LOGS</value>
+								</systemProperty>
+								<systemProperty>
+									<key>legacylogging</key>
+									<value />
+								</systemProperty>
+								<systemProperty>
+									<key>suitethreadpoolsize</key>
+									<value>25</value>
+								</systemProperty>
+							</systemProperties>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>maven.test.skip</id>
+			<activation>
+				<property>
+					<name>maven.test.skip</name>
+					<value>true</value>
+				</property>
+			</activation>
+		</profile>
+		<profile>
+			<id>skipTests</id>
+			<activation>
+				<property>
+					<name>skipTests</name>
+					<value>true</value>
+				</property>
+			</activation>
+		</profile>
+	</profiles>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>2.5</version>
+					<configuration>
+						<filesets>
+							<fileset>
+								<directory>${project.basedir}/test-output</directory>
+							</fileset>
+							<fileset>
+								<directory>${project.basedir}/tmp</directory>
+							</fileset>
+							<fileset>
+								<directory>${project.basedir}</directory>
+								<includes>
+									<include>curl.exe</include>
+									<include>libeay32.dll</include>
+									<include>libssl32.dll</include>
+								</includes>
+							</fileset>
+						</filesets>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>exec-maven-plugin</artifactId>
+					<version>1.2.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.groovy</groupId>
+					<artifactId>groovy-eclipse-compiler</artifactId>
+					<version>2.7.0-01</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.5.1</version>
+					<configuration>
+						<source>${target.java.version}</source>
+						<target>${target.java.version}</target>
+					</configuration>
+					<dependencies>
+						<dependency>
+							<groupId>org.codehaus.groovy</groupId>
+							<artifactId>groovy-eclipse-compiler</artifactId>
+							<version>2.7.0-01</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+				<plugin>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>3.3</version>
+					<configuration>
+						<generateReports>false</generateReports>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.groovy</groupId>
+				<artifactId>groovy-eclipse-compiler</artifactId>
+				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<compilerId>groovy-eclipse-compiler</compilerId>
+					<verbose>true</verbose>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-site-plugin</artifactId>
+				<configuration>
+					<generateReports>false</generateReports>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<scm>
+		<tag>ERICtaf_util-2.0.2</tag>
+	</scm>
+</project>

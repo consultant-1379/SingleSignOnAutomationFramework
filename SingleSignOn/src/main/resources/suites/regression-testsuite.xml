@@ -1,0 +1,42 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="SSO Regression">
+
+    <test name="SSO Regression">
+        <classes>
+<!--			<class name="com.ericsson.nms.sso.taf.test.cases.SsoLogin"/>
+			<class name="com.ericsson.nms.sso.taf.test.cases.SsoLogout"/>-->
+<!--            <class name="com.ericsson.nms.sso.taf.test.cases.SsoDesktopApps" />
+            <class name="com.ericsson.nms.sso.taf.test.cases.SsoLogViewer">
+                <methods>
+                    <exclude name="sSO_LogViewer_1" />
+                    <exclude name="sSO_LogViewer_2" />
+                    <exclude name="sSO_LogViewer_3" />
+                    <exclude name="sSO_LogViewer_4" />
+                    <exclude name="sSO_LogViewer_5" />
+                    <exclude name="sSO_LogViewer_6" />
+                </methods>
+            </class>
+-->            <class name="com.ericsson.nms.sso.taf.test.cases.SsoBackupRestore">
+<!--                <methods>
+                    <exclude name="sSO_BackupRestore_verifyBackupCreate"/>
+                    <exclude name="sSO_BackupRestore_verifyBackupRemove"/>
+                    <exclude name="sSO_BackupRestore_verifyBackupRestore"/>
+                    <exclude name="sSO_BackupRestore_shouldShowUsage"/>
+                    <exclude name="sSO_BackupRestore_MultipleRestores"/>
+                </methods>-->
+            </class><!--
+            <class name="com.ericsson.nms.sso.taf.test.cases.SsoTORTimeout">
+                <methods>
+                    <exclude name="sSO_TORTimeout6" />
+                    <exclude name="sSO_TORTimeout1" />
+                    <exclude name="sSO_TORTimeout2" />
+                    <exclude name="sSO_TORTimeout3" />
+                    <exclude name="sSO_TORTimeout4" />
+                    <exclude name="sSO_TORTimeout5" />
+                    <exclude name="sSO_TORTimeout7" />
+                </methods>
+            </class>-->
+        </classes>
+    </test>
+
+</suite>

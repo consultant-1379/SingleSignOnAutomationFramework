@@ -1,0 +1,27 @@
+# Compiled source #
+*.class
+*/bin/*
+
+# Eclipse files
+.project
+.settings
+.classpath
+
+# Packages
+
+# Maven build files
+target
+reports
+test-output
+tmp
+# ARQ tests
+arq-perf
+
+# PMD
+.pmd
+
+# Merge files
+*.orig
+
+# Groovy
+.groovy/

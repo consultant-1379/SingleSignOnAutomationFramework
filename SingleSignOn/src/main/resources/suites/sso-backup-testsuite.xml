@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="SsoBackupTest">
+
+    <test name="SsoBackupTest">
+        <classes>
+            <!--<class name="com.ericsson.nms.sso.taf.test.cases.SsoBackupRestore"/>-->
+        </classes>
+    </test>
+
+</suite>
